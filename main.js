@@ -27,25 +27,42 @@ function colorFunc() {
 themeIcon.addEventListener("click" , colorFunc)
 
 // work list
-let works = [
-    {text: "Learn js" , position: true } ,
-    {text: "go gem" , position: true }
-] ;
+let works = [] ;
 const list = document.getElementById("work") ;
+let item = document.getElementById("item") ;
 let bodyDiv = document.getElementsByClassName("body");
 
 function createList() {
     for(let index of works){
-        const divElem = document.createElement("div") ;
-        divElem.setAttribute("class" , "work") ;
-        const span = document.createElement("span");
-        span.setAttribute("onclick" , "doUndo(event)") ;
-        divElem.appendChild(span) ;
-        const labelElem = document.createElement("label") ;
-        labelElem.innerHTML = index.text ;
-        divElem.appendChild(labelElem) ;
-        list.appendChild(divElem) ;
+        if (index.position == true) {
+            const divElem = document.createElement("div") ;
+            divElem.setAttribute("class" , "work") ;
+            const span = document.createElement("span");
+            span.setAttribute("onclick" , "doUndo(event)") ;
+            span.style.background = "none" ;
+            divElem.appendChild(span) ;
+            const labelElem = document.createElement("label") ;
+            labelElem.innerHTML = index.text ;
+            divElem.appendChild(labelElem) ;
+            list.appendChild(divElem) ;
+        }else{
+            const divElem = document.createElement("div") ;
+            divElem.setAttribute("class" , "work") ;
+            const span = document.createElement("span");
+            span.setAttribute("onclick" , "doUndo(event)") ;
+            span.style.background = "var(--select)" ;
+            divElem.appendChild(span) ;
+            const labelElem = document.createElement("label") ;
+            labelElem.innerHTML = index.text ;
+            const delElem = document.createElement("del") ;
+            delElem.appendChild(labelElem) ;
+            divElem.appendChild(delElem) ;
+            list.appendChild(divElem) ;
+        }
+
     };
+    let count = works.length ;
+    item.innerHTML = `${count} item` ;
     (works.length >= 6) ? bodyDiv[0].style.height = "fit-content" : bodyDiv[0].style.height = "100%" ;
 }
 
@@ -105,4 +122,74 @@ function doUndo(event) {
 
 }
 
-// 
+// information box all
+const all = document.getElementById("all") ;
+
+all.addEventListener("click" , function () {
+    list.innerHTML = "" ;
+    createList() ;
+}) ;
+
+// information box activ
+const active = document.getElementById("active") ;
+
+function activFunc() {
+    let activObj = [] ;
+    list.innerHTML = "" ;
+    for(let x of works){
+        if (x.position == true) {
+            const divElem = document.createElement("div") ;
+            divElem.setAttribute("class" , "work") ;
+            const span = document.createElement("span");
+            span.setAttribute("onclick" , "doUndo(event)") ;
+            divElem.appendChild(span) ;
+            const labelElem = document.createElement("label") ;
+            labelElem.innerHTML = x.text ;
+            divElem.appendChild(labelElem) ;
+            list.appendChild(divElem) ;
+            activObj.push(x) ;
+        }
+    }
+    let count = activObj.length ;
+    item.innerHTML = `${count} item` ;
+    (activObj.length >= 6) ? bodyDiv[0].style.height = "fit-content" : bodyDiv[0].style.height = "100%" ;
+}
+
+active.addEventListener("click" , activFunc) ;
+
+// information box completed 
+const completed = document.getElementById("completed") ;
+
+function completedFunc() {
+    let completedObj = [] ;
+    list.innerHTML = "" ;
+    for(let x of works){
+        if (x.position == false) {
+            const divElem = document.createElement("div") ;
+            divElem.setAttribute("class" , "work") ;
+            const span = document.createElement("span");
+            span.setAttribute("onclick" , "doUndo(event)") ;
+            divElem.appendChild(span) ;
+            const labelElem = document.createElement("label") ;
+            labelElem.innerHTML = x.text ;
+            divElem.appendChild(labelElem) ;
+            list.appendChild(divElem) ;
+            completedObj.push(x) ;
+        }
+    }
+    let count = completedObj.length ;
+    item.innerHTML = `${count} item` ;
+    (completedObj.length >= 6) ? bodyDiv[0].style.height = "fit-content" : bodyDiv[0].style.height = "100%" ;
+}
+
+completed.addEventListener("click" , completedFunc) ;
+
+// clear completed 
+const clear = document.getElementById("clear") ;
+
+clear.addEventListener("click" , function () {
+    works = [] ;
+    list.innerHTML = "" ;
+    let count = works.length ;
+    item.innerHTML = `${count} item` ;
+})
