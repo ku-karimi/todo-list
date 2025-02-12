@@ -10,6 +10,7 @@
     --font : snow ;
     --list : #25273c ;
     --borderColor : #5f6071 ;
+    --select : radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(72,132,213,1) 60%, rgba(203,56,255,1) 77%);;
 }
 
 html, body {
@@ -27,7 +28,7 @@ html, body {
 /* head style and image part */
 
 .head{
-    background-image: url(./images/bg-desktop-dark.jpg);
+    background: url(./images/bg-desktop-dark.jpg);
     width: 100%;
     height: 300px;
     display: block;
@@ -38,7 +39,7 @@ html, body {
     display: flex;
     justify-content: space-between;
     margin: auto;
-    color: var(--font);
+    color: snow;
     font-weight: 900;
     font-size: 30px;
     letter-spacing: 13px;
@@ -95,6 +96,7 @@ html, body {
     padding: 15px;
     display: flex;
     align-items: center;
+    border-bottom: 2px solid var(--borderColor);
 }
 
 .work span {
@@ -103,6 +105,8 @@ html, body {
     border: 2px solid var(--borderColor);
     width: 20px;
     height: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
     border-radius: 100%;
     -webkit-border-radius: 100%;
     -moz-border-radius: 100%;
@@ -110,10 +114,30 @@ html, body {
     -o-border-radius: 100%;
 }
 
+/* list information part */
+
+.information{
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: 100;
+    padding: 10px;
+    border-bottom: 2px solid var(--borderColor);
+}
+
+.information p {
+    cursor: pointer;
+}
+
+.center{
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+}
+
 /* p end bod */
 
-.guidanse{
-    margin-top: 50px;
+.div-guidanse{
     letter-spacing: 3px;
     color: var(--font);
     width: 100%;
@@ -134,5 +158,11 @@ html, body {
     #list-contayner{
         width: 80%;
         font-size: 15px;
+    }
+    .information{
+        font-size: 12px;
+    }
+    .center{
+        width: 40%;
     }
   }

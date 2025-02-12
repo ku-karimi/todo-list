@@ -22,23 +22,30 @@
              </div>
             <!-- input for addwork -->
             <div class="head-part2">
-                <input type="text" id="add-work">
+                <input type="text" id="add-work" placeholder="ADD A NEW WORK">
             </div>
         </div>
         <!-- list -->
         <div id="list">
             <!-- a simpel work -->
              <div id="list-contayner">
-                <div class="work">
-                    <span></span>
-                    <label for="work">Learn js</label>
-                </div>
+                 <!-- data about list -->
+                 <div class="information">
+                     <div>0 item</div>
+                     <div class="center">
+                         <p>All</p>
+                         <p>Active</p>
+                         <p>Completed</p>
+                     </div>
+                     <div><p>Clear Completed</p></div>
+                 </div>
+                <div id="work"></div>
              </div>
         </div>
-        <footer>
+        <div class="div-guidanse">
             <p class="guidanse">Drag and drop to reorder</p>
-        </footer>
+        </div>
     </div>
-    <script src="main.js"></script>
+    <script src="./main.js"></script>
 </body>
 </html>
